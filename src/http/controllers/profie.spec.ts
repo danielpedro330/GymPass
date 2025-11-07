@@ -3,7 +3,7 @@ import {app} from "@/app"
 import { afterAll, beforeAll, describe, expect, it } from "vitest"
 import { prisma } from "@/lib/prisma"
 
-describe("Authenticate (e2e)", () => {
+describe("Profile (e2e)", () => {
     beforeAll(async () => {
         await app.ready()
     })
@@ -13,21 +13,24 @@ describe("Authenticate (e2e)", () => {
         await prisma.$disconnect()
     })
 
-    it("Should be able to authenticate", async () => {
+    it("Should be able to get user profile", async () => {
         await request(app.server).post("/users").send({
             name: "John Doe",
             email: "jonh@example.com",
             password: "123456"
         })
 
-        const response = await request(app.server).post("/session").send({
+        const authResponse = await request(app.server).post("/session").send({
             email: "jonh@example.com",
             password: "123456"
         })
 
-        expect(response.statusCode).toEqual(200)
-        expect(response.body).toEqual({
-            token: expect.any(String)
-        })
-})
+        const {token} = authResponse.body
+        console.log(token)
+
+        const profileResponse = await request(app.server).get("/me").set("Authorization", `Bearer ${token}`).send()
+        console.log("📦 profileResponse status:", profileResponse.statusCode);
+
+        expect(profileResponse.statusCode).toEqual(200)
+    }, 20000)
 })

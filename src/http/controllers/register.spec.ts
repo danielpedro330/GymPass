@@ -1,6 +1,7 @@
 import request from "supertest"
 import {app} from "@/app"
 import { afterEach, beforeAll, describe, expect, it } from "vitest"
+import { prisma } from "@/lib/prisma"
 
 describe("Register (e2e)", () => {
     beforeAll(async () => {
@@ -9,6 +10,7 @@ describe("Register (e2e)", () => {
 
     afterEach(async () => {
         await app.close()
+        await prisma.$disconnect()
     })
 
     it("Should be able to register", async () => {
