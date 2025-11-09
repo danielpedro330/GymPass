@@ -26,10 +26,8 @@ describe("Profile (e2e)", () => {
         })
 
         const {token} = authResponse.body
-        console.log(token)
 
         const profileResponse = await request(app.server).get("/me").set("Authorization", `Bearer ${token}`).send()
-        console.log("📦 profileResponse status:", profileResponse.statusCode);
 
         expect(profileResponse.statusCode).toEqual(200)
     }, 20000)

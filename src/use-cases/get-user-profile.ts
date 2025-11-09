@@ -10,7 +10,7 @@ interface GetProfileUserResponse {
     user: User
 }
 
-export class GetProfileUser {
+export class GetProfileUseCase {
     constructor(private usersReposytory: UsersRepository) {}
 
     async execute({ userId }: GetProfileUserRequest): Promise<GetProfileUserResponse> {

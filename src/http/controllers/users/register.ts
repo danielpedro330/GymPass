@@ -1,9 +1,5 @@
-import { prisma } from "@/lib/prisma"
 import z from "zod"
-import { hash } from "bcryptjs"
 import {FastifyRequest, FastifyReply} from "fastify"
-import { RegisterUseCase } from "@/use-cases/register"
-import { PrismaUsersRepository } from "@/repositories/prisma/prisma-user-repository"
 import { userAlreadyExistsError } from "@/use-cases/errors/user-already-exists-error"
 import { makeRegisterUseCase } from "@/use-cases/factories/make-register-user-cases"
 

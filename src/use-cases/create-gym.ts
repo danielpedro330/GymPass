@@ -9,9 +9,9 @@ interface CreateGymUseCasesRequest {
     longitude: number
 }
 
-// interface CreateGymUseCasesResponse {
-//     gyms: Gym
-// }
+interface CreateGymUseCasesResponse {
+    gyms: Gym
+}
 
 export class CreateGymUseCase {
     constructor(private gymRepository: GymRepository) {
@@ -24,7 +24,7 @@ export class CreateGymUseCase {
         phone,
         latitude,
         longitude
-    }: CreateGymUseCasesRequest) {
+    }: CreateGymUseCasesRequest): Promise<CreateGymUseCasesResponse> {
         const gyms = await this.gymRepository.create({
             title,
             description,
@@ -33,6 +33,6 @@ export class CreateGymUseCase {
             longitude
         })
 
-        return gyms
+        return {gyms}
     }
 }

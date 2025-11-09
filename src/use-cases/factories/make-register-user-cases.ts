@@ -6,4 +6,4 @@ export function makeRegisterUseCase() {
     const registerUseCase = new RegisterUseCase(usersRepository)
 
     return registerUseCase
-}
+} 

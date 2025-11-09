@@ -1,7 +1,6 @@
 import { InMemoryGymRepository } from '@/repositories/in-memory/in-memory-gym-repository'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { CreateGymUseCase } from './create-gym';
-import { Decimal } from 'generated/prisma/runtime/library';
 
 let gymRepository: InMemoryGymRepository;
 let sut: CreateGymUseCase;
@@ -22,6 +21,6 @@ describe('Create gym use cases', () => {
             longitude: -49.6401091
         })
 
-        expect(gym.id).toEqual(expect.any(String))
+        expect(gym.gyms.id).toEqual(expect.any(String))
     })
 })
