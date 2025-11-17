@@ -10,7 +10,7 @@ describe("Register (e2e)", () => {
 
     afterEach(async () => {
         await app.close()
-        await prisma.$disconnect()
+
     })
 
     it("Should be able to register", async () => {

@@ -10,7 +10,7 @@ describe("Authenticate (e2e)", () => {
 
     afterAll(async () => {
         await app.close()
-        await prisma.$disconnect()
+
     })
 
     it("Should be able to authenticate", async () => {
